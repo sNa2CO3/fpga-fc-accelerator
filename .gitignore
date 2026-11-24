@@ -1,0 +1,27 @@
+# Vivado 构建产物与缓存
+*.jou
+*.log
+*.str
+*.wdb
+*.pb
+*.dcp
+*.rpt
+.Xil/
+Lab8.runs/
+Lab8.gen/
+Lab8.cache/
+Lab8.sim/
+Lab8.hw/
+Lab8.ip_user_files/
+
+# 办公文档 / 演示材料（含个人信息，不入库）
+*.pptx
+*.docx
+*.doc
+*.pdf
+*.xlsx
+
+# 临时目录
+_work/
+_incoming/
+ppt/

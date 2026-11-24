@@ -1,0 +1,206 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.7.17" pages="1">
+  <diagram id="lab7arch" name="Lab7 架构">
+    <mxGraphModel dx="1600" dy="700" grid="0" gridSize="10" guides="1" tooltips="1"
+                  connect="1" arrows="1" fold="1" page="1" pageScale="1"
+                  pageWidth="1600" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" /><mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Lab7　NPU 顶层架构（FIFO 接口 + 指令解析 + 两种工作模式）"
+                style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                vertex="1" parent="1">
+          <mxGeometry x="40" y="8" width="1520" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 顶层: 主机 - FIFO - FC_top - FIFO - 主机 ===== -->
+        <mxCell id="host1" value="上游 / 主机&lt;br&gt;(PS · DMA)"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#f2f4f6;strokeColor=#8a97a3;strokeWidth=1;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="160" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="infifo" value="输入 FIFO&lt;br&gt;64bit × 512"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#fcead9;strokeColor=#c08b5c;strokeWidth=1;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="240" y="60" width="180" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ctrl" value="FC_top　数据流控制&lt;br&gt;指令解析 · 9 状态机 · 特征图回读"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#b6d8f6;strokeColor=#3b547f;strokeWidth=2;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="470" y="60" width="660" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="outfifo" value="输出 FIFO&lt;br&gt;8bit × 512"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#fcead9;strokeColor=#c08b5c;strokeWidth=1;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="1180" y="60" width="180" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="host2" value="下游 / 主机&lt;br&gt;(PS · DMA)"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#f2f4f6;strokeColor=#8a97a3;strokeWidth=1;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="1400" y="60" width="160" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_h1" value="指令+样本&lt;br&gt;64bit"
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;fontSize=12;fontColor=#1f3f6b;verticalAlign=bottom;labelBackgroundColor=#ffffff;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="201" y="112" as="sourcePoint" /><mxPoint x="239" y="112" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_h2" value=""
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="421" y="100" as="sourcePoint" /><mxPoint x="469" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_h3" value=""
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1131" y="100" as="sourcePoint" /><mxPoint x="1179" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_h4" value="结果/特征图&lt;br&gt;8bit"
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;fontSize=12;fontColor=#1f3f6b;verticalAlign=bottom;labelBackgroundColor=#ffffff;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1361" y="112" as="sourcePoint" /><mxPoint x="1399" y="112" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== NPU 内部 ===== -->
+        <mxCell id="npu_box" value=""
+                style="rounded=0;html=1;fillColor=none;strokeColor=#7f5faf;strokeWidth=1;dashed=1;dashPattern=4 4;"
+                vertex="1" parent="1">
+          <mxGeometry x="40" y="180" width="1520" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="npu_lbl" value="NPU 内部数据通路（三层网络原样复用 Lab6，输出截位 8bit）"
+                style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=0;fontColor=#7f5faf;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                vertex="1" parent="1">
+          <mxGeometry x="52" y="188" width="700" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="in_ram" value="输入样本 RAM&lt;br&gt;1024b × 4 行&lt;br&gt;（FIFO 写入）"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#eef6fd;strokeColor=#3b547f;strokeWidth=1;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="80" y="250" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="fc1b" value="FC1  512→128&lt;br&gt;ReLU →&gt;&gt;10"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#b6d8f6;strokeColor=#3b547f;strokeWidth=2;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="300" y="250" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="r1b" value="FC1 Out RAM&lt;br&gt;2 × 512b"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dbeef4;strokeColor=#668d89;strokeWidth=1;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="500" y="250" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="fc2b" value="FC2  128→32&lt;br&gt;ReLU →&gt;&gt;9"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#b6d8f6;strokeColor=#3b547f;strokeWidth=2;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="680" y="250" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="r2b" value="FC2 Out RAM&lt;br&gt;2 × 512b"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dbeef4;strokeColor=#668d89;strokeWidth=1;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="880" y="250" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="fc3b" value="FC3  32→2&lt;br&gt;线性 →&gt;&gt;8"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#b6d8f6;strokeColor=#3b547f;strokeWidth=2;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="1060" y="250" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="regb" value="FC3 结果&lt;br&gt;2 × 8bit&lt;br&gt;（寄存器，不占 BRAM）"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#eef6fd;strokeColor=#3b547f;strokeWidth=1;fontSize=13;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="1260" y="250" width="170" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_r1" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="261" y="290" as="sourcePoint" /><mxPoint x="299" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_r2" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="461" y="290" as="sourcePoint" /><mxPoint x="499" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_r3" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="641" y="290" as="sourcePoint" /><mxPoint x="679" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_r4" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="841" y="290" as="sourcePoint" /><mxPoint x="879" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_r5" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1021" y="290" as="sourcePoint" /><mxPoint x="1059" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_r6" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1221" y="290" as="sourcePoint" /><mxPoint x="1259" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== 共用运算阵列 ===== -->
+        <mxCell id="arr_box" value=""
+                style="rounded=0;html=1;fillColor=none;strokeColor=#7f5faf;strokeWidth=1;dashed=1;dashPattern=4 4;"
+                vertex="1" parent="1">
+          <mxGeometry x="120" y="380" width="1160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="arr" value="64 路 8×8 有符号乘法阵列"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dbeef4;strokeColor=#668d89;strokeWidth=1;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="180" y="420" width="380" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="tree" value="64 输入平衡加法树（6 级）"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dbeef4;strokeColor=#668d89;strokeWidth=1;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="640" y="420" width="380" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mt" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1;strokeColor=#5f8484;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="561" y="445" as="sourcePoint" /><mxPoint x="639" y="445" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr_note" value="三层分时复用：8bit 截位后都是 8×8 乘法，使用时机不重叠 —— DSP 64 个"
+                style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=0;fontColor=#4a4a4a;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                vertex="1" parent="1">
+          <mxGeometry x="180" y="476" width="760" height="22" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_a1" style="edgeStyle=none;html=1;startArrow=block;startFill=1;startSize=5;endArrow=block;endFill=1;endSize=5;strokeWidth=2;strokeColor=#5f8484;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="331" as="sourcePoint" /><mxPoint x="380" y="379" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_a2" style="edgeStyle=none;html=1;startArrow=block;startFill=1;startSize=5;endArrow=block;endFill=1;endSize=5;strokeWidth=2;strokeColor=#5f8484;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="331" as="sourcePoint" /><mxPoint x="760" y="379" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_a3" style="edgeStyle=none;html=1;startArrow=block;startFill=1;startSize=5;endArrow=block;endFill=1;endSize=5;strokeWidth=2;strokeColor=#5f8484;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1140" y="331" as="sourcePoint" /><mxPoint x="1140" y="379" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="foot" value="指令字（64bit，低 8 位有效）：0x01 = 推理，随后 64 个 64bit 字即 512 字节样本；0x02 = 特征图，不重新推理，回读 fc1(128B)+fc2(32B)+fc3(2B)。"
+                style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=0;fontColor=#4a4a4a;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                vertex="1" parent="1">
+          <mxGeometry x="40" y="600" width="1520" height="44" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

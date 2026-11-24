@@ -1,0 +1,150 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.7.17" pages="1">
+  <diagram id="lab7fsm" name="Lab7 状态机">
+    <mxGraphModel dx="1600" dy="880" grid="0" gridSize="10" guides="1" tooltips="1"
+                  connect="1" arrows="1" fold="1" page="1" pageScale="1"
+                  pageWidth="1600" pageHeight="880" math="0" shadow="0">
+      <root>
+        <mxCell id="0" /><mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Lab7　FC_top 状态机（9 状态，两种工作模式）"
+                style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                vertex="1" parent="1">
+          <mxGeometry x="40" y="8" width="1520" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 状态 ===== -->
+        <mxCell id="s_idle" value="idle&lt;br&gt;(0)"
+                style="shape=ellipse;html=1;whiteSpace=wrap;fillColor=#eef6fd;strokeColor=#3b547f;strokeWidth=2;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="742" y="642" width="116" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="s_cmd" value="command&lt;br&gt;(1)"
+                style="shape=ellipse;html=1;whiteSpace=wrap;fillColor=#eef6fd;strokeColor=#3b547f;strokeWidth=2;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="742" y="442" width="116" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="s_dat" value="data_&lt;br&gt;receive&lt;br&gt;(2)"
+                style="shape=ellipse;html=1;whiteSpace=wrap;fillColor=#b6d8f6;strokeColor=#3b547f;strokeWidth=2;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="1062" y="242" width="116" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="s_fc1" value="FC1&lt;br&gt;(3)"
+                style="shape=ellipse;html=1;whiteSpace=wrap;fillColor=#b6d8f6;strokeColor=#3b547f;strokeWidth=2;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="1322" y="392" width="116" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="s_fc2" value="FC2&lt;br&gt;(4)"
+                style="shape=ellipse;html=1;whiteSpace=wrap;fillColor=#b6d8f6;strokeColor=#3b547f;strokeWidth=2;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="1322" y="602" width="116" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="s_fc3" value="FC3&lt;br&gt;(5)"
+                style="shape=ellipse;html=1;whiteSpace=wrap;fillColor=#b6d8f6;strokeColor=#3b547f;strokeWidth=2;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="1062" y="732" width="116" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="s_fc1o" value="FC1_out&lt;br&gt;(6)"
+                style="shape=ellipse;html=1;whiteSpace=wrap;fillColor=#dbeef4;strokeColor=#668d89;strokeWidth=2;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="162" y="392" width="116" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="s_fc2o" value="FC2_out&lt;br&gt;(7)"
+                style="shape=ellipse;html=1;whiteSpace=wrap;fillColor=#dbeef4;strokeColor=#668d89;strokeWidth=2;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="162" y="602" width="116" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="s_fc3o" value="FC3_out&lt;br&gt;(8)"
+                style="shape=ellipse;html=1;whiteSpace=wrap;fillColor=#dbeef4;strokeColor=#668d89;strokeWidth=2;fontSize=15;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="422" y="732" width="116" height="116" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 迁移 ===== -->
+        <mxCell id="t1" value="1"
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;fontSize=15;fontColor=#1f3f6b;labelBackgroundColor=#ffffff;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="641" as="sourcePoint" /><mxPoint x="800" y="559" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t2" value="1"
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;fontSize=15;fontColor=#1f3f6b;labelBackgroundColor=#ffffff;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="861" y="462" as="sourcePoint" /><mxPoint x="1059" y="338" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t3" value="2"
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#7f5faf;fontSize=15;fontColor=#7f5faf;labelBackgroundColor=#ffffff;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="740" y="495" as="sourcePoint" /><mxPoint x="280" y="455" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t4" value="1"
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;fontSize=15;fontColor=#1f3f6b;labelBackgroundColor=#ffffff;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1182" y="336" as="sourcePoint" /><mxPoint x="1318" y="414" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t5" value="1"
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;fontSize=15;fontColor=#1f3f6b;labelBackgroundColor=#ffffff;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1380" y="509" as="sourcePoint" /><mxPoint x="1380" y="601" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t6" value="1"
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;fontSize=15;fontColor=#1f3f6b;labelBackgroundColor=#ffffff;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1316" y="692" as="sourcePoint" /><mxPoint x="1184" y="758" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t7" value="1"
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;fontSize=15;fontColor=#1f3f6b;labelBackgroundColor=#ffffff;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1061" y="790" as="sourcePoint" /><mxPoint x="539" y="790" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8" value="1"
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;fontSize=15;fontColor=#1f3f6b;labelBackgroundColor=#ffffff;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="549" y="770" as="sourcePoint" /><mxPoint x="731" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t9" value="1"
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#7f5faf;fontSize=15;fontColor=#7f5faf;labelBackgroundColor=#ffffff;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="220" y="509" as="sourcePoint" /><mxPoint x="220" y="601" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t10" value="1"
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#7f5faf;fontSize=15;fontColor=#7f5faf;labelBackgroundColor=#ffffff;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="284" y="692" as="sourcePoint" /><mxPoint x="416" y="758" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== 图例 ===== -->
+        <mxCell id="legend" value="推理分支（蓝）：idle → command → data_receive → FC1 → FC2 → FC3 → FC3_out（输出 1 字节结果）→ idle&lt;br&gt;特征图分支（青）：command → FC1_out（128B）→ FC2_out（32B）→ FC3_out（输出 2 字节 y1,y2）→ idle&lt;br&gt;每个状态在条件未满足时保持（自环，图中省略）；command 的 0 分支为等待有效指令。"
+                style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=14;fontStyle=0;fontColor=#4a4a4a;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                vertex="1" parent="1">
+          <mxGeometry x="620" y="48" width="940" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="foot" value="状态编码与课件参考波形一致：command=1、FC1_out=6、FC2_out=7。"
+                style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=14;fontStyle=0;fontColor=#4a4a4a;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                vertex="1" parent="1">
+          <mxGeometry x="40" y="840" width="1520" height="24" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

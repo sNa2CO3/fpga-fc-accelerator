@@ -1,0 +1,208 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.7.17" pages="1">
+  <diagram id="lab6arch" name="Lab6 顶层架构">
+    <mxGraphModel dx="1600" dy="740" grid="0" gridSize="10" guides="1" tooltips="1"
+                  connect="1" arrows="1" fold="1" page="1" pageScale="1"
+                  pageWidth="1600" pageHeight="740" math="0" shadow="0">
+      <root>
+        <mxCell id="0" /><mxCell id="1" parent="0" />
+
+        <!-- ===== 标题 ===== -->
+        <mxCell id="title" value="Lab6　三层全连接网络顶层架构（逐层截位 + 共用乘法器阵列 + 42 样本循环）"
+                style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                vertex="1" parent="1">
+          <mxGeometry x="40" y="8" width="1520" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 权重 / 偏置 ===== -->
+        <mxCell id="w1" value="fc1 权重 BRAM&lt;br&gt;1024b × 512&lt;br&gt;偏置 BRAM 128"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#fcead9;strokeColor=#c08b5c;strokeWidth=1;fontSize=14;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="295" y="42" width="170" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="w2" value="fc2 权重 BRAM&lt;br&gt;64 × 512b&lt;br&gt;偏置 BRAM 32"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#fcead9;strokeColor=#c08b5c;strokeWidth=1;fontSize=14;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="715" y="42" width="170" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="w3" value="fc3 权重 BRAM&lt;br&gt;2 × 512b&lt;br&gt;偏置 = 常数"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#fcead9;strokeColor=#c08b5c;strokeWidth=1;fontSize=14;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="1135" y="42" width="170" height="64" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 主数据通路 ===== -->
+        <mxCell id="b_in" value="输入样本 BRAM&lt;br&gt;168 × 1024b&lt;br&gt;42 样本 × 4 行"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#eef6fd;strokeColor=#3b547f;strokeWidth=1;fontSize=16;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="85" y="160" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="b_fc1" value="fc1　512→128&lt;br&gt;ReLU →&gt;&gt;SH1&lt;br&gt;输出 128 × 8b"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#b6d8f6;strokeColor=#3b547f;strokeWidth=2;fontSize=16;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="295" y="160" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="b_r1" value="层间 RAM&lt;br&gt;2 × 512b&lt;br&gt;128 × 8b"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#eef6fd;strokeColor=#3b547f;strokeWidth=1;fontSize=16;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="505" y="160" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="b_fc2" value="fc2　128→32&lt;br&gt;ReLU →&gt;&gt;SH2&lt;br&gt;输出 32 × 8b"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#b6d8f6;strokeColor=#3b547f;strokeWidth=2;fontSize=16;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="715" y="160" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="b_r2" value="层间 RAM&lt;br&gt;2 × 512b&lt;br&gt;32 × 8b"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#eef6fd;strokeColor=#3b547f;strokeWidth=1;fontSize=16;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="925" y="160" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="b_fc3" value="fc3　32→2&lt;br&gt;线性 →&gt;&gt;SH3&lt;br&gt;输出 2 × 8b"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#b6d8f6;strokeColor=#3b547f;strokeWidth=2;fontSize=16;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="1135" y="160" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="b_out" value="结果寄存器&lt;br&gt;2 × 8b&lt;br&gt;wren / addr / data"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#eef6fd;strokeColor=#3b547f;strokeWidth=1;fontSize=16;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="1345" y="160" width="170" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 权重 -> 层 ===== -->
+        <mxCell id="e_w1" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1;strokeColor=#7b5530;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="107" as="sourcePoint" /><mxPoint x="380" y="159" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_w2" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1;strokeColor=#7b5530;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="107" as="sourcePoint" /><mxPoint x="800" y="159" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_w3" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1;strokeColor=#7b5530;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1220" y="107" as="sourcePoint" /><mxPoint x="1220" y="159" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== 主通路连线 ===== -->
+        <mxCell id="e_in_fc1" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="256" y="205" as="sourcePoint" /><mxPoint x="294" y="205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_fc1_r1" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="466" y="205" as="sourcePoint" /><mxPoint x="504" y="205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_r1_fc2" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="676" y="205" as="sourcePoint" /><mxPoint x="714" y="205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_fc2_r2" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="886" y="205" as="sourcePoint" /><mxPoint x="924" y="205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_r2_fc3" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1096" y="205" as="sourcePoint" /><mxPoint x="1134" y="205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_fc3_out" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1.5;strokeColor=#1f3f6b;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1306" y="205" as="sourcePoint" /><mxPoint x="1344" y="205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== 共用运算阵列 ===== -->
+        <mxCell id="arr_box" value=""
+                style="rounded=0;html=1;fillColor=none;strokeColor=#7f5faf;strokeWidth=1;dashed=1;dashPattern=4 4;"
+                vertex="1" parent="1">
+          <mxGeometry x="340" y="330" width="920" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="arr_mul" value="64 路 8×8 有符号乘法&lt;br&gt;mult_8（PipeStages = 3）"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dbeef4;strokeColor=#668d89;strokeWidth=1;fontSize=16;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="370" y="370" width="370" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="arr_tree" value="64 输入平衡加法树&lt;br&gt;6 级，16bit → 32bit"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dbeef4;strokeColor=#668d89;strokeWidth=1;fontSize=16;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="780" y="370" width="380" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mul_tree" style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1;strokeColor=#5f8484;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="741" y="405" as="sourcePoint" /><mxPoint x="779" y="405" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr_note" value="8bit 截位后三层都是 8×8 乘法，且三层使用时机不重叠 → 一套阵列分时复用&lt;br&gt;DSP 由 Lab5 的 152 个降到 64 个"
+                style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;fontStyle=0;fontColor=#4a4a4a;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                vertex="1" parent="1">
+          <mxGeometry x="350" y="450" width="900" height="42" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 三层 <-> 阵列 的双向连接 ===== -->
+        <mxCell id="e_fc1_arr" value=""
+                style="edgeStyle=none;html=1;startArrow=block;startFill=1;startSize=5;endArrow=block;endFill=1;endSize=5;strokeWidth=2;strokeColor=#5f8484;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="251" as="sourcePoint" /><mxPoint x="380" y="329" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_fc2_arr" value=""
+                style="edgeStyle=none;html=1;startArrow=block;startFill=1;startSize=5;endArrow=block;endFill=1;endSize=5;strokeWidth=2;strokeColor=#5f8484;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="251" as="sourcePoint" /><mxPoint x="800" y="329" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_fc3_arr" value=""
+                style="edgeStyle=none;html=1;startArrow=block;startFill=1;startSize=5;endArrow=block;endFill=1;endSize=5;strokeColor=#5f8484;strokeWidth=2;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1220" y="251" as="sourcePoint" /><mxPoint x="1220" y="329" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_arr" value="操作数 ↓　加法树结果 ↑"
+                style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=0;fontColor=#5f8484;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                vertex="1" parent="1">
+          <mxGeometry x="1240" y="280" width="200" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- ===== FSM ===== -->
+        <mxCell id="fsm" value="顶层状态机（FSM）&lt;br&gt;IDLE → FC1 → FC2 → FC3 → NEXT → DONE&lt;br&gt;一个 start 脉冲跑完 42 个样本"
+                style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#f2f4f6;strokeColor=#8a97a3;strokeWidth=1;fontSize=14;fontStyle=1;fontColor=#262626;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;align=center;verticalAlign=middle;"
+                vertex="1" parent="1">
+          <mxGeometry x="560" y="540" width="480" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e_fsm" value=""
+                style="edgeStyle=none;html=1;endArrow=block;endFill=1;endSize=5;strokeWidth=1;strokeColor=#7f5faf;dashed=1;dashPattern=4 4;"
+                edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="539" as="sourcePoint" /><mxPoint x="800" y="501" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== 图注 ===== -->
+        <mxCell id="foot" value="注：SH1/SH2/SH3 随 CUT_W 变化 —— 8bit: 10/9/8；4bit: 14/8/9（逐层串行推导，见正文）。fc1/fc2 的输出经打包级写入层间 RAM，fc3 的结果直接送到输出端口。"
+                style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=0;fontColor=#4a4a4a;fontFamily=Microsoft YaHei,PingFang SC,Helvetica;"
+                vertex="1" parent="1">
+          <mxGeometry x="40" y="650" width="1520" height="50" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
