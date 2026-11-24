@@ -28,8 +28,11 @@ ip/         各 BRAM / 乘法器 IP 的 .xci 与 .mif
 scripts/    setup_project.tcl / create_ip.tcl / build_bd.tcl / build_bitstream.tcl
             run_xsim.sh        命令行仿真（xvlog → xvhdl → xelab → xsim）
             run_timing.tcl     时序与资源报告
-sw/         dma_probe.py      DMA 固定开销探针
-docs/       设计文档（Markdown + 图）
+sw/         板端辅助脚本
+              dma_probe.py    DMA 固定开销探针
+              bt.py           逐样本验证（按样本计数）
+              bench.py        批大小扫描与分层计时
+docs/       设计文档 9 篇（入口：docs/README.md），含 3 张可编辑的架构图
 output/     lab8.bit / lab8.hwh   已构建的比特流与硬件描述
             lab8_npu.py          板端推理脚本
             sel_data.coe / sel_labels.txt   42 个样本与标签
